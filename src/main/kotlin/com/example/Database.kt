@@ -1,6 +1,6 @@
 package com.example
 
-import io.ktor.application.*
+import io.ktor.server.application.*
 
 fun Application.database(){
     //TODO: example with Exposed & H2

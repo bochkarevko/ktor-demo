@@ -1,12 +1,12 @@
 package com.example
 
-import io.ktor.application.*
-import io.ktor.locations.*
+import io.ktor.server.application.*
+import io.ktor.server.locations.*
 
 fun main(args: Array<String>): Unit =
     io.ktor.server.netty.EngineMain.main(args)
 
-@KtorExperimentalLocationsAPI
+@OptIn(KtorExperimentalLocationsAPI::class)
 fun Application.module(testing: Boolean = false) {
     simple() // simple text
     html()  // some HTML and CSS

@@ -1,7 +1,7 @@
 package com.example
 
-import io.ktor.application.*
-import io.ktor.config.*
+import io.ktor.server.application.*
+import io.ktor.server.config.*
 
 operator fun ApplicationConfig.get(key: String) =
     this.propertyOrNull(key)?.getString()

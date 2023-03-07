@@ -1,19 +1,17 @@
 package com.example
 
-import io.ktor.application.*
-import io.ktor.features.*
-import io.ktor.html.*
-import io.ktor.locations.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import io.ktor.util.*
+import io.ktor.server.application.*
+import io.ktor.server.html.*
+import io.ktor.server.locations.*
+import io.ktor.server.plugins.dataconversion.DataConversion
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import io.ktor.util.converters.*
 import kotlinx.html.a
 import kotlinx.html.body
 import kotlinx.html.br
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 @KtorExperimentalLocationsAPI
 @Location("/index")
@@ -24,9 +22,7 @@ class Index(val message: String = "Hello from index!")
 //@Location("/employee/{id}") //  employee/Anton?project=Kotlin
 @Location("/employee/{id}/{project}") //  employee/Anton/Kotlin
 class Employee(
-    val id: String,
-    val project: String,
-    val dob: LocalDate
+    val id: String, val project: String, val dob: LocalDate
 )
 
 @KtorExperimentalLocationsAPI
@@ -40,18 +36,15 @@ fun Application.locations() {
 
     install(DataConversion) {
         convert<LocalDate> { // this: DelegatingConversionService
-            val formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+            val formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd")
 
-            decode { values, _ -> // converter: (values: List<String>, type: Type) -> Any?
+            decode { values -> // converter: (values: List<String>, type: Type) -> Any?
                 values.singleOrNull()?.let { LocalDate.parse(it) }
+                    ?: throw DataConversionException("Cannot convert $values as Date")
             }
 
-            encode { value -> // converter: (value: Any?) -> List<String>
-                when (value) {
-                    null -> listOf()
-                    is LocalDate -> listOf(formatter.format(value))
-                    else -> throw DataConversionException("Cannot convert $value as Date")
-                }
+            encode { value -> // converter: (value: Any) -> List<String>
+                listOf(formatter.format(value))
             }
         }
     }
