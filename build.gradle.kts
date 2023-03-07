@@ -58,7 +58,7 @@ dependencies {
 
     //region webjars
     implementation("io.ktor:ktor-server-webjars")
-    implementation("org.webjars:jquery:3.2.1")
+    implementation("org.webjars:jquery:3.6.2")
     implementation("org.webjars:vue:2.1.3")
     implementation("org.webjars:ionicons:2.0.1")
     implementation("org.webjars.npm:google-polyline:1.0.0")
