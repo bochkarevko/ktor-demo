@@ -64,7 +64,17 @@ dependencies {
     implementation("org.webjars.npm:google-polyline:1.0.0")
     //endregion
 
+    implementation("org.freemarker:freemarker:2.3.31")
+
+    // database
+    implementation("io.ktor:ktor-server-resources")
+    implementation("io.ktor:ktor-server-sessions")
+    implementation("io.ktor:ktor-server-partial-content")
+    implementation("com.h2database:h2:2.1.214")
+    implementation("com.mchange:c3p0:0.9.5.5")
+    implementation("org.ehcache:ehcache:3.9.7")
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-jodatime:$exposedVersion")
 }

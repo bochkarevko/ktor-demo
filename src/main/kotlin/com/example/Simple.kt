@@ -8,7 +8,7 @@ import io.ktor.server.routing.*
 
 fun Application.simple() {
     routing {
-        get("/") {
+        get("/simple") {
             call.respondText("Hello World!", ContentType.Text.Plain)
         }
     }
