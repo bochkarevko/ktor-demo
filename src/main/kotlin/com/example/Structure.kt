@@ -33,5 +33,4 @@ fun Application.structure() {
         home()
         employees()
     }
-
 }

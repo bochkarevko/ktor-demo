@@ -77,4 +77,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jodatime:$exposedVersion")
+    testImplementation("io.ktor:ktor-server-test-host-jvm:2.2.4")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.8.10")
 }

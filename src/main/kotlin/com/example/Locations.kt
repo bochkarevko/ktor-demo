@@ -13,13 +13,14 @@ import kotlinx.html.br
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+// !!! In v2.0.0, the Locations plugin is deprecated. Use the Resources plugin instead.
+
 @KtorExperimentalLocationsAPI
 @Location("/index")
 class Index(val message: String = "Hello from index!")
 
-@KtorExperimentalLocationsAPI
-
 //@Location("/employee/{id}") //  employee/Anton?project=Kotlin
+@OptIn(KtorExperimentalLocationsAPI::class)
 @Location("/employee/{id}/{project}") //  employee/Anton/Kotlin
 class Employee(
     val id: String, val project: String, val dob: LocalDate

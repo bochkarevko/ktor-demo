@@ -146,14 +146,13 @@ class DAOFacadeDatabase(
             .map { User(it[Users.id], email, it[Users.displayName], it[Users.passwordHash]) }.singleOrNull()
     }
 
-    override fun createUser(user: User) = transaction(db) {
+    override fun createUser(user: User): Unit = transaction(db) {
         Users.insert {
             it[id] = user.userId
             it[displayName] = user.displayName
             it[email] = user.email
             it[passwordHash] = user.passwordHash
         }
-        Unit
     }
 
     override fun top(count: Int): List<Int> = transaction(db) {
